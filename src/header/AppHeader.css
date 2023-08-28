@@ -1,0 +1,48 @@
+.nav-Header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #5c5857;
+    /* opacity: 1; */
+    max-width: 96%;
+    height: 70px;
+    padding: 0 30px;
+    margin: 0 auto;
+    position: relative;
+    top: 1px;
+    border-radius: 6px;
+    box-shadow: 5px 5px 15px -5px #5c5857;
+
+}
+
+.nav-Header-name {
+    color: #25243B;
+    font-family: Inter;
+    font-size: 16px;
+    letter-spacing: -0.42px;
+    line-height: 14px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 250ms;
+    outline: none;
+}
+
+.nav-Header-name:hover {
+    color: #c8841f;
+    transform: translateY(-4px);
+    outline: none;
+
+}
+
+.header__shrink {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: #ffff;
+    z-index: 99999;
+    box-shadow: 5px 5px 15px -5px #fde4e4;
+    max-width: 96%;
+    margin: 0 auto;
+
+  }
