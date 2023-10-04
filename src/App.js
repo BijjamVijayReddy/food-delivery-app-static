@@ -1,10 +1,12 @@
-import React from 'react'
-import Footer from './footer/Footer'
+import React from 'react';
+import Internet from './components/intrentTracker/Internet';
+import LayOut from './layOut/LayOut';
 
 const App = () => {
   return (
     <div>
-       <Footer />
+      <Internet />
+      <LayOut />
     </div>
   )
 }
