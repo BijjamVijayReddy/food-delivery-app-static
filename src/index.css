@@ -58,3 +58,7 @@ section {
   color: #df2020;
   background-color: #fde4e4;
 }
+
+body::-webkit-scrollbar {
+  display: none;
+}
