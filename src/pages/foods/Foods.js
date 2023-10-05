@@ -28,7 +28,7 @@ const Foods = () => {
     }
   });
 
-  const productPerPage = 12;
+  const productPerPage = 8;
   const visitedPage = pageNumber * productPerPage;
   const displayPage = searchedProduct.slice(
     visitedPage,
