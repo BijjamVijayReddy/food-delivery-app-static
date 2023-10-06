@@ -6,9 +6,9 @@ import logo from "../../assests/images/res-logo.png";
 import { CiShoppingCart } from "react-icons/ci";
 import { FaAlignJustify } from "react-icons/fa"
 import { FaPowerOff } from "react-icons/fa6";
-
-// RxHamburgerMenu
+import { cartUiActions } from "../../store/shippingCart/cartUISlice";
 import { NavLink, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const nav__links = [
@@ -32,11 +32,12 @@ const nav__links = [
 
 const Header = () => {
   const [scrollTop, setScrollTop] = React.useState(0);
-  console.log("Scroll " + scrollTop)
+  // console.log("Scroll " + scrollTop)
 
   const headerRef = useRef(null);
   const menuRef = useRef(null);
-
+  const dispatch = useDispatch()
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
 
   const screenWidth = window.screen.availWidth;
@@ -58,7 +59,13 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [])
+  }, []);
+
+  const toggleCart = () => {
+    dispatch(cartUiActions.toggle());
+    console.log("Cart " + cartUiActions.toggle())
+
+  };
 
   return (
     <div className={` ${scrollTop < 64 ? "" : "header__shrink"}`}>
@@ -93,9 +100,9 @@ const Header = () => {
 
             <div className="nav__right d-flex align-items-center gap-4">
 
-              <span className="cart__icon" >
-                <i class="ri-shopping-basket-line"><CiShoppingCart /></i>
-                <span className="cart__badge">25</span>
+              <span className="cart__icon" onClick={toggleCart}>
+                <Link to="/cart">  <i class="ri-shopping-basket-line"><CiShoppingCart /></i></Link>
+                <span className="cart__badge">{totalQuantity}</span>
               </span>
 
               {screenWidth < 984 ? (<span className="user">
@@ -103,9 +110,9 @@ const Header = () => {
               </span>) : null}
 
 
-              <span className="user">
-                <i class="ri-user-line"><FaPowerOff /></i>
-              </span>
+               <span className="user">
+               <Link to="/login"><i class="ri-user-line"><FaPowerOff /></i></Link> 
+              </span> 
 
             </div>
           </div>
@@ -113,7 +120,7 @@ const Header = () => {
 
       </header>
 
-      
+
     </div>
 
   )

@@ -1,28 +1,40 @@
 import React, { useRef } from "react";
+import Helmet from "../../components/helmet/Helmet";
+import CommonSection from "../../components/commonSection/CommonSection";
 import { Container, Row, Col } from "reactstrap";
+import { Link } from "react-router-dom";
 
-const Login = () => {
-  const loginNameRef = useRef();
-  const loginPasswordRef = useRef();
+const Register = () => {
+  const signupNameRef = useRef();
+  const signupPasswordRef = useRef();
+  const signupEmailRef = useRef();
 
   const submitHandler = (e) => {
     e.preventDefault();
   };
 
   return (
-    <div >
-      <div  />
-      <div>
+    <Helmet title="Signup">
+      <CommonSection title="Signup" />
+      <section style={{padding:"25px"}}>
         <Container>
           <Row>
             <Col lg="6" md="6" sm="12" className="m-auto text-center">
               <form className="form mb-5" onSubmit={submitHandler}>
                 <div className="form__group">
                   <input
+                    type="text"
+                    placeholder="Full name"
+                    required
+                    ref={signupNameRef}
+                  />
+                </div>
+                <div className="form__group">
+                  <input
                     type="email"
                     placeholder="Email"
                     required
-                    ref={loginNameRef}
+                    ref={signupEmailRef}
                   />
                 </div>
                 <div className="form__group">
@@ -30,22 +42,20 @@ const Login = () => {
                     type="password"
                     placeholder="Password"
                     required
-                    ref={loginPasswordRef}
+                    ref={signupPasswordRef}
                   />
                 </div>
                 <button type="submit" className="addTOCart__btn">
-                  Login
+                  Sign Up
                 </button>
               </form>
-              {/* <Link to="/register">
-                Don't have an account? Create an account
-              </Link> */}
+              <Link to="/login">Already have an account? Login</Link>
             </Col>
           </Row>
         </Container>
-      </div>
-    </div>
+      </section>
+    </Helmet>
   );
 };
 
-export default Login;
+export default Register;

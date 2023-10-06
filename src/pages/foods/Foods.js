@@ -1,16 +1,15 @@
 import React, { useState } from "react";
+import Helmet from "../../components/helmet/Helmet";
 import CommonSection from "../../components/commonSection/CommonSection";
 
 import { Container, Row, Col } from "reactstrap";
 
 import products from "../../assests/fakeData/Product";
-
+import ProductCard from "../../components/product-cart/ProductCart";
 import ReactPaginate from "react-paginate";
 
 import "./Foods.css";
 import "./pagantion.css";
-import Helmet from "../../components/helmet/Helmet";
-import ProductCard from "../../components/product-cart/ProductCart";
 
 const Foods = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -28,7 +27,7 @@ const Foods = () => {
     }
   });
 
-  const productPerPage = 8;
+  const productPerPage = 12;
   const visitedPage = pageNumber * productPerPage;
   const displayPage = searchedProduct.slice(
     visitedPage,
