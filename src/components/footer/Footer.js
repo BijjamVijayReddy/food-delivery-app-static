@@ -5,9 +5,38 @@ import { FaFacebookF, FaLinkedinIn, FaYoutube } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa6";
 import "./Footer.css";
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    const serviceId = "service_pxkvloz";
+    const templateId = "template_q7tocep";
+    const publicKey = "1BovD2UqsBpuezqFr";
+
+    const templateParams = {
+      from_name: email,
+    };
+
+    emailjs
+      .send(serviceId, templateId, templateParams, publicKey)
+      .then((response) => {
+        console.log("Email sent successfully!", response);
+        alert("Email sent successfully!", response)
+        setEmail("");
+      })
+      .catch((error) => {
+        console.error("Error sending email:", error);
+      });
+
+    setEmail("");
+  }
+
   return (
     <div className="footer">
       <Container>
@@ -57,9 +86,9 @@ const Footer = () => {
             <h5 className="footer__title">Newsletter</h5>
             <p>Subscribe our newsletter</p>
             <div className="newsletter">
-              <input type="email" placeholder="Enter your email" />
+              <input type="email" placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} />
               <span>
-                <i class="ri-send-plane-line">Send</i>
+                <i class="ri-send-plane-line" onClick={submitHandler}>Send</i>
               </span>
             </div>
           </Col>

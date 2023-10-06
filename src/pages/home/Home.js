@@ -18,7 +18,7 @@ import products from "../../assests/fakeData/Product";
 import foodCategoryImg01 from "../../assests/images/bread.png";
 import foodCategoryImg02 from "../../assests/images/pizza.png";
 import foodCategoryImg03 from "../../assests/images/hamburger.png";
-import { json } from 'react-router-dom';
+import { Link, json } from 'react-router-dom';
 import ProductCard from '../../components/product-cart/ProductCart';
 
 
@@ -109,8 +109,7 @@ const Home = () => {
                   </button>
 
                   <button className="all__foods-btn">
-                    {/* <Link to="/foods">See all foods</Link> */}
-                    See all foods
+                    <Link to="/foods">See all foods</Link>
                   </button>
                 </div>
 
