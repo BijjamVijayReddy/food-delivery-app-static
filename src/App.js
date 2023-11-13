@@ -5,8 +5,10 @@ import LayOut from './layOut/LayOut';
 const App = () => {
   return (
     <div>
+    
       <Internet />
       <LayOut />
+    
     </div>
   )
 }
