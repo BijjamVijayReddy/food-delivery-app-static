@@ -132,6 +132,9 @@
     .show__menu {
       display: block;
     }
+    .lan__menu {
+      display: block;
+    }
   }
   
   @media only screen and (max-width: 768px) {

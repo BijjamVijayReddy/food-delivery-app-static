@@ -1,14 +1,15 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "./AppHeader.css"
 
 import { Container } from "reactstrap";
 import logo from "../../assests/images/res-logo.png";
 import { CiShoppingCart } from "react-icons/ci";
 import { FaAlignJustify } from "react-icons/fa"
-import { FaPowerOff } from "react-icons/fa6";
+import { FaPowerOff, FaLanguage } from "react-icons/fa6";
 import { cartUiActions } from "../../store/shippingCart/cartUISlice";
 import { NavLink, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../../store/shippingCart/cartSlice";
 
 
 const nav__links = [
@@ -30,15 +31,32 @@ const nav__links = [
   },
 ];
 
+const lanSelction = [
+  {
+    value: "en",
+    text: "English",
+    letter: "english"
+  },
+  {
+    value: "hn",
+    text: "हिन्दी",
+    letter: "hindi",
+  },
+]
+
 const Header = () => {
   const [scrollTop, setScrollTop] = React.useState(0);
+ 
+
   // console.log("Scroll " + scrollTop)
 
   const headerRef = useRef(null);
   const menuRef = useRef(null);
+  const lanSelctor = useRef(null)
   const dispatch = useDispatch()
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const toggleMenu = () => menuRef.current.classList.toggle("show__menu");
+  const lanSlider = () => lanSelctor.current.classList.toggle("lan__menu")
 
   const screenWidth = window.screen.availWidth;
 
@@ -63,9 +81,12 @@ const Header = () => {
 
   const toggleCart = () => {
     dispatch(cartUiActions.toggle());
-    console.log("Cart " + cartUiActions.toggle())
-
   };
+
+  const languageHandler = (e) => {
+    console.log("first " +  JSON.stringify( cartActions.setLangaugeAction().type))
+    dispatch(cartActions.setLangaugeAction(e.target.value))
+  }
 
   return (
     <div className={` ${scrollTop < 64 ? "" : "header__shrink"}`}>
@@ -73,7 +94,7 @@ const Header = () => {
         <Container>
           <div className="nav__wrapper d-flex align-items-center justify-content-between">
             <div className="logo">
-             <Link to="/home"><img src={logo} alt="logo" /></Link> 
+              <Link to="/home"><img src={logo} alt="logo" /></Link>
               <h5>Tasty Treat</h5>
             </div>
 
@@ -96,6 +117,31 @@ const Header = () => {
               </div>
             </div>
 
+
+            {/* Lanaguage Selctor */}
+
+            <div className="navigation" ref={lanSelctor} onClick={lanSlider}>
+              <div className="menu d-flex align-items-center gap-5">
+                {lanSelction.map((item, index) => (
+                  <button
+                    style={{ border: "none", background: "none" }}
+                    value={item.value}
+                    key={index}
+                    className={(navClass) =>
+                      navClass.isActive ? "active__menu" : ""
+                    }
+                    onClick={languageHandler}
+                  >
+                    {item.text}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+
+
+
+
             {/* ======== nav right icons ========= */}
 
             <div className="nav__right d-flex align-items-center gap-4">
@@ -105,14 +151,18 @@ const Header = () => {
                 <span className="cart__badge">{totalQuantity}</span>
               </span>
 
+              <span className="cart__icon" onClick={lanSlider}>
+                <i class="ri-shopping-basket-line" ><FaLanguage /></i>
+              </span>
+
               {screenWidth < 984 ? (<span className="user">
                 <i class="ri-user-line" onClick={toggleMenu}><FaAlignJustify /></i>
               </span>) : null}
 
 
-               <span className="user">
-               <Link to="/login"><i class="ri-user-line"><FaPowerOff /></i></Link> 
-              </span> 
+              <span className="user">
+                <Link to="/login"><i class="ri-user-line"><FaPowerOff /></i></Link>
+              </span>
 
             </div>
           </div>

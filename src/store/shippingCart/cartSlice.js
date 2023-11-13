@@ -4,6 +4,7 @@ const initialState = {
   cartItems: [],
   totalQuantity: 0,
   totalAmount: 0,
+  language:"en",
 };
 
 const cartSlice = createSlice({
@@ -11,6 +12,13 @@ const cartSlice = createSlice({
   initialState,
 
   reducers: {
+ 
+    // Langauge Selection;
+    setLangaugeAction(state,action){
+      state.language = action.payload;
+      console.log("PayLoad " + action.payload)
+    },
+
     // =========== add item ============
     addItem(state, action) {
       const newItem = action.payload;
@@ -85,4 +93,5 @@ const cartSlice = createSlice({
 });
 
 export const cartActions = cartSlice.actions;
+
 export default cartSlice;

@@ -7,10 +7,16 @@ import { FaInstagram } from "react-icons/fa6";
 import "./Footer.css";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import {footerTxt} from "../../data/Transaltion"
+import { useSelector } from "react-redux";
 
 
 const Footer = () => {
   const [email, setEmail] = useState("");
+  const lan = useSelector((state) => state.cart.language);
+
+ 
+  console.log("Lan " +  JSON.stringify(lan))
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -52,15 +58,15 @@ const Footer = () => {
           </Col>
 
           <Col lg="3" md="4" sm="6">
-            <h5 className="footer__title">Delivery Time</h5>
+            <h5 className="footer__title">{footerTxt[lan].deviveryTime}</h5>
             <ListGroup className="deliver__time-list">
               <ListGroupItem className=" delivery__time-item border-0 ps-0">
-                <span>Monday - Friday</span>
+                <span>{footerTxt[lan].monday} - {footerTxt[lan].friday}</span>
                 <p>10:00AM - 11:00PM</p>
               </ListGroupItem>
 
               <ListGroupItem className=" delivery__time-item border-0 ps-0">
-                <span>Saturday - Sunday</span>
+                <span>{footerTxt[lan].saturday} - {footerTxt[lan].sunday}</span>
                 <p>9:00AM - 06:00PM</p>
               </ListGroupItem>
             </ListGroup>
