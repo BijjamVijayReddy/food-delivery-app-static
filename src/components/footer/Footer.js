@@ -15,8 +15,9 @@ const Footer = () => {
   const [email, setEmail] = useState("");
   const lan = useSelector((state) => state.cart.language);
 
- 
-  console.log("Lan " +  JSON.stringify(lan))
+  // console.log("Lan " +  JSON.stringify(lan));
+
+  // console.log("langaue" + lan)
 
   const submitHandler = (e) => {
     e.preventDefault();

@@ -47,7 +47,7 @@ const Home = () => {
   const [allProducts , setAllProducts] = useState(products);
   const [hotPizza, setHotPizza] = useState([]);;
 
-  console.log("pRODUCTSS"  + allProducts) 
+  // console.log("pRODUCTSS"  + allProducts) 
 
   useEffect(() => {
     const filteredPizza = products.filter((item) => item.category === "Pizza");
@@ -58,7 +58,7 @@ const Home = () => {
   useEffect(() => {
     if (category === "ALL") {
       setAllProducts(products);;
-      console.log("Products "  + products)
+      // console.log("Products "  + products)
     }
 
     if (category === "BURGER") {

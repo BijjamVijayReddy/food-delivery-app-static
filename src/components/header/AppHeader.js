@@ -46,7 +46,7 @@ const lanSelction = [
 
 const Header = () => {
   const [scrollTop, setScrollTop] = React.useState(0);
- 
+
 
   // console.log("Scroll " + scrollTop)
 
@@ -84,7 +84,9 @@ const Header = () => {
   };
 
   const languageHandler = (e) => {
-    console.log("first " +  JSON.stringify( cartActions.setLangaugeAction().type))
+    // console.log("first " + e.target.value);
+    // const stringValue = JSON.stringify(e.target.value);
+    sessionStorage.setItem('selectedLanguage', e.target.value);
     dispatch(cartActions.setLangaugeAction(e.target.value))
   }
 
