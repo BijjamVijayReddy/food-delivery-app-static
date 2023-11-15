@@ -153,10 +153,10 @@ const Header = () => {
                 <span className="cart__badge">{totalQuantity}</span>
               </span>
 
-              <span className="cart__icon" onClick={lanSlider}>
+              {screenWidth < 984 ? (<span className="cart__icon" onClick={lanSlider}>
                 <i class="ri-shopping-basket-line" ><FaLanguage /></i>
-              </span>
-
+              </span>) : null}
+                    
               {screenWidth < 984 ? (<span className="user">
                 <i class="ri-user-line" onClick={toggleMenu}><FaAlignJustify /></i>
               </span>) : null}
