@@ -10,26 +10,27 @@ import { cartUiActions } from "../../store/shippingCart/cartUISlice";
 import { NavLink, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/shippingCart/cartSlice";
+import { headerTxt } from "../../data/Transaltion";
 
 
-const nav__links = [
-  {
-    display: "Home",
-    path: "/home",
-  },
-  {
-    display: "Foods",
-    path: "/foods",
-  },
-  {
-    display: "Cart",
-    path: "/cart",
-  },
-  {
-    display: "Contact",
-    path: "/contact",
-  },
-];
+// const nav__links = [
+//   {
+//     display: "Home",
+//     path: "/home",
+//   },
+//   {
+//     display: "Foods",
+//     path: "/foods",
+//   },
+//   {
+//     display: "Cart",
+//     path: "/cart",
+//   },
+//   {
+//     display: "Contact",
+//     path: "/contact",
+//   },
+// ];
 
 const lanSelction = [
   {
@@ -46,10 +47,7 @@ const lanSelction = [
 
 const Header = () => {
   const [scrollTop, setScrollTop] = React.useState(0);
-
-
-  // console.log("Scroll " + scrollTop)
-
+  const lan = useSelector((state) => state.cart.language);
   const headerRef = useRef(null);
   const menuRef = useRef(null);
   const lanSelctor = useRef(null)
@@ -59,6 +57,25 @@ const Header = () => {
   const lanSlider = () => lanSelctor.current.classList.toggle("lan__menu")
 
   const screenWidth = window.screen.availWidth;
+
+  const nav__links = [
+    {
+      display: headerTxt[lan].home,
+      path: "/home",
+    },
+    {
+      display: headerTxt[lan].foods,
+      path: "/foods", 
+    },
+    {
+      display: headerTxt[lan].carts,
+      path: "/cart",
+    },
+    {
+      display: headerTxt[lan].contact,
+      path: "/contact",
+    },
+  ];  
 
   React.useEffect(() => {
 
@@ -84,11 +101,11 @@ const Header = () => {
   };
 
   const languageHandler = (e) => {
-    // console.log("first " + e.target.value);
-    // const stringValue = JSON.stringify(e.target.value);
     sessionStorage.setItem('selectedLanguage', e.target.value);
     dispatch(cartActions.setLangaugeAction(e.target.value))
-  }
+  };
+
+  
 
   return (
     <div className={` ${scrollTop < 64 ? "" : "header__shrink"}`}>
@@ -97,7 +114,7 @@ const Header = () => {
           <div className="nav__wrapper d-flex align-items-center justify-content-between">
             <div className="logo">
               <Link to="/home"><img src={logo} alt="logo" /></Link>
-              <h5>Tasty Treat</h5>
+              <h5>{headerTxt[lan].appName}</h5>
             </div>
 
 

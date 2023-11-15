@@ -20,6 +20,8 @@ import foodCategoryImg02 from "../../assests/images/pizza.png";
 import foodCategoryImg03 from "../../assests/images/hamburger.png";
 import { Link, json } from 'react-router-dom';
 import ProductCard from '../../components/product-cart/ProductCart';
+import { homeTxt } from '../../data/Transaltion';
+import { useSelector } from 'react-redux';
 
 
 const featureData = [
@@ -46,6 +48,7 @@ const Home = () => {
   const [category , setCategory] = useState();
   const [allProducts , setAllProducts] = useState(products);
   const [hotPizza, setHotPizza] = useState([]);;
+  const lan = useSelector((state) => state.cart.language);
 
   // console.log("pRODUCTSS"  + allProducts) 
 
@@ -93,23 +96,21 @@ const Home = () => {
           <Row>
             <Col lg="6" md="6">
               <div className="hero__content  ">
-                <h5 className="mb-3">Easy way to make an order</h5>
+                <h5 className="mb-3">{homeTxt[lan].homeMainTxt}</h5>
                 <h1 className="mb-4 hero__title">
-                  <span>HUNGRY?</span> Just wait <br /> food at
-                  <span> your door</span>
+                  <span>{homeTxt[lan].hunger}</span> {homeTxt[lan].justTxt}<br /> {homeTxt[lan].foodAt}
+                  <span> {homeTxt[lan].yourDoor}</span>
                 </h1>
 
-                <p>
-                  Your cravings, our mission. Taste the speed of satisfaction with every bite delivered to your door, made just for you.
-                </p>
+                <p> {homeTxt[lan].subMainTxt}</p>
 
                 <div className="hero__btns d-flex align-items-center gap-5 mt-4">
                   <button className="order__btn d-flex align-items-center justify-content-between">
-                    Order now <i class="ri-arrow-right-s-line"></i>
+                   {homeTxt[lan].orderNow} <i class="ri-arrow-right-s-line"></i>
                   </button>
 
                   <button className="all__foods-btn">
-                    <Link to="/foods">See all foods</Link>
+                    <Link to="/foods">{homeTxt[lan].allFoods} </Link>
                   </button>
                 </div>
 
@@ -118,14 +119,14 @@ const Home = () => {
                     <span className="shipping__icon">
                       <i class="ri-car-line"><AiFillCar /></i>
                     </span>{" "}
-                    No shipping charge
+                    {homeTxt[lan].shippingCharges}
                   </p>
 
                   <p className=" d-flex align-items-center gap-2 ">
                     <span className="shipping__icon">
                       <i class="ri-shield-check-line"> <GoShieldCheck /></i>
                     </span>
-                    100% secure checkout
+                    100% {}{homeTxt[lan].secureCheckout}
                   </p>
                 </div>
               </div>
