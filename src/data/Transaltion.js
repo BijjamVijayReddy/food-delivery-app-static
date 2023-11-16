@@ -69,3 +69,17 @@ export const footerTxt = {
 
 }
 
+export const interntTxt = {
+
+    en : {
+      online : " Great! You're now connected to the internet.",
+      offline : "Looks like you're not connected to the internet. Please verify your connection."
+    },
+ 
+    hn : {
+        online : " शानदार! अब आप इंटरनेट से जुड़े हुए हैं।",
+        offline : "लगता है आप इंटरनेट से जुड़े नहीं हैं। कृपया अपना कनेक्शन सत्यापित करें।"
+    }
+
+}
+

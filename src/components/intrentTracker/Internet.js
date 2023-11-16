@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import { interntTxt } from '../../data/Transaltion';
+import { useSelector } from 'react-redux';
 
 const Internet = () => {
+    const lan = useSelector((state) => state.cart.language);
     const [isOpen, setIsOpen] = useState(false)
     const [isStatus, setIsStatus] = useState(() => {
         if (navigator.onLine) {
@@ -43,14 +46,14 @@ const Internet = () => {
                 horizontal: 'right'
             }} onClose={handleClose}>
                 <Alert variant="filled" severity="success" onClose={handleClose}>
-                    <p style={{fontSize:"12px"}}> Great! You're now connected to the internet.</p>
+                    <p style={{fontSize:"12px"}}> {interntTxt[lan].online}</p>
                 </Alert>
             </Snackbar>) : (<Snackbar open={isOpen} sx={{ maxWidth: "100%", margin: "0 auto" }} autoHideDuration={4000} anchorOrigin={{
                 vertical: 'top',
                 horizontal: 'right'
             }} onClose={handleClose}>
                 <Alert variant="filled" severity="error" onClose={handleClose}>
-                   <p style={{fontSize:"7px"}}>Looks like you're not connected to the internet. Please verify your connection.</p> 
+                   <p style={{fontSize:"7px"}}>{interntTxt[lan].offline}</p> 
                 </Alert>
             </Snackbar>)}
 
